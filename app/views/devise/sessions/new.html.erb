@@ -1,0 +1,102 @@
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<br><br><br><br><br><br><br><br>
+<div class="custom_body">
+    <div class="container">
+      <div class="row">
+          
+          <div class="login_box">
+              <section class="main-box">
+                  
+           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                  <div class="input-box">
+                      <span class="input-group-addon i_icon"><i class="glyphicon glyphicon-user"></i></span>
+                         <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control input_layout",placeholder: "Username" %>
+                    </div>
+                    <div class="input-box">
+                       <span class="input-group-addon i_icon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <div class="field">
+                     <%= f.password_field :password, autocomplete: "current-password",class: "form-control input_layout",placeholder: "Password" %> 
+                    </div>
+                    </div>
+
+                        <% if devise_mapping.rememberable? %>
+                          <div class="field">
+                            <%= f.check_box :remember_me %>
+                            <%= f.label :remember_me %>
+                          </div>
+                        <% end %>
+                    
+               <div class="actions">
+                  <%= f.submit "Log in", class: "btn btn-default btn_style" %>
+               </div>
+                  <% end %>
+            <%= render "devise/shared/links" %>   
+                       </section>
+                    </div>
+                    
+                </div>
+              </div>
+          </div>    
+<style type="text/css">
+  body{
+    background-image: url(https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+  }
+
+}
+.login_box {
+    margin:0 auto;
+    max-width: 400px;
+    min-width: 320px;
+    width: 100%;
+}
+.input-box {
+    float: left;
+    margin-bottom: 10px;
+    text-align: left;
+    width: 100%;
+}
+.i_icon {
+    border: medium none;
+    border-radius: 0;
+    color: #3965a0;
+    float: left;
+    padding: 12px;
+    top: 32px;
+    width: 40px;
+}
+.input_layout {
+    border: medium none;
+    border-radius: 0;
+    float: left;
+    height: 38px;
+    margin: 0;
+    padding: 0 10px;
+    width: 89%;
+}
+.main-box {
+    background: rgba(255, 251, 251, 0.41) none repeat scroll 0 0;
+    float: left;
+    margin-bottom: 100px;
+    margin-top: 100px;
+    padding: 50px 15px;
+    width: 100%;
+    border: 1px solid #fff;
+}
+.btn_style {
+    background-color:  rgba(57, 101, 160, 1);
+    color: #fff;
+    padding: 10px 0;
+    width: 100%;
+    border: none;
+}
+.btn_style:hover {
+    background-color: rgba(57, 101, 160, 1);
+    color: #ffffff;
+}
+
+</style>

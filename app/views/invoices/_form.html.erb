@@ -1,0 +1,69 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<%= form_with(model: invoice, local: true) do |form| %>
+  <% if invoice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+
+      <ul>
+      <% invoice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<br><br><br><br>
+<div class="container">
+       <table class="table table-striped">
+          <tbody>
+             <tr>
+                <td colspan="1">
+                   <form class="well form-horizontal">
+                      <fieldset>
+                         <div class="form-group">
+                            <label class="col-md-4 control-label">Title</label>
+                            <div class="col-md-8 inputGroupContainer">
+                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><%= form.text_field :title, class: "form-control" %></div>
+                            </div>
+                         </div>
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Description</label>
+                            <div class="col-md-8 inputGroupContainer">
+                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></span><%= form.text_field :description, class: "form-control" %></div>
+                             </div>
+                           </div>
+
+                                <div class="form-group">
+                            <label class="col-md-4 control-label">Deadline</label>
+                            <div class="col-md-8 inputGroupContainer">
+                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-bullhorn"></i></span><%= form.text_field :deadline, class: "form-control" %></div>
+                             </div></div>
+                               <div class="form-group">
+                            <label class="col-md-4 control-label">Money</label>
+                            <div class="col-md-8 inputGroupContainer">
+                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span><%= form.text_field :money, class: "form-control" %></div></div></div>
+                               <div class="form-group">
+                            <label class="col-md-4 control-label">Total</label>
+                            <div class="col-md-8 inputGroupContainer">
+                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span><%= form.text_field :total, class: "form-control" %></div></div></div>
+                               <div class="form-group">
+                            <label class="col-md-4 control-label">Start Date</label>
+                            <div class="col-md-8 inputGroupContainer">
+                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span><%= form.text_field :start_date, class: "form-control" %></div></div></div>
+                               <div class="form-group">
+                            <label class="col-md-4 control-label">End Date</label>
+                            <div class="col-md-8 inputGroupContainer">
+                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-eye-close"></i></span><%= form.text_field :end_date, class: "form-control" %></div></div></div>
+                                <div class="actions" class="btn btn-danger">
+                                  <%= form.submit%>
+                                </div>
+                       </fieldset>
+                     </form>
+                   </td>
+                 </tr>
+               </tbody>
+             </table>
+           </div>
+  <% end %>

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  deadline: MyString
+  money: 1
+  total: 1
+  start_date: 2019-10-10 10:54:11
+  end_date: 2019-10-10 10:54:11
+
+two:
+  title: MyString
+  description: MyText
+  deadline: MyString
+  money: 1
+  total: 1
+  start_date: 2019-10-10 10:54:11
+  end_date: 2019-10-10 10:54:11
