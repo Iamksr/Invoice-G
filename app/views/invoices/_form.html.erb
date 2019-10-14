@@ -56,6 +56,11 @@
                             <label class="col-md-4 control-label">End Date</label>
                             <div class="col-md-8 inputGroupContainer">
                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-eye-close"></i></span><%= form.text_field :end_date, class: "form-control" %></div></div></div>
+                                <div class="field">
+                                <%= form.label :user_id %><br />
+                                <%= form.collection_select :user_id, User.order(:name), :id, :name, include_blank: true,class: "form-control"%>
+                              </div>
+
                                 <div class="actions" class="btn btn-danger">
                                   <%= form.submit%>
                                 </div>

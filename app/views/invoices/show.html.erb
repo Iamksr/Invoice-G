@@ -38,6 +38,8 @@
 <%= link_to 'Edit', edit_invoice_path(@invoice), class: "btn btn--blue btn--stroke btn--stroke--2 px24 py12 txt-s round-full px36"%> |
 <%= link_to 'Back', invoices_path,class: "btn btn--red btn--stroke btn--stroke--2 px24 py12 txt-s round-full px36" %>
 </div>
+<%#= link_to 'Order', charges_new_path%>
+<a class="btn btn--blue btn--stroke btn--stroke--2 px24 py12 txt-s round-full px36" href="/charges/new" data-reactid="593">Place Order</a>
 <style type="text/css">
   .btn.btn--stroke {
     background-color: transparent;

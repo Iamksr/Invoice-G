@@ -5,6 +5,9 @@ class InvoicesController < ApplicationController
   # GET /invoices.json
   def index
     @invoices = Invoice.all
+    if params[:id].present?
+          @user = User.find(params[:user_id])
+        end
   end
 
   # GET /invoices/1
@@ -69,6 +72,6 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:title, :description, :deadline, :money, :total, :start_date, :end_date)
+      params.require(:invoice).permit(:title, :description, :deadline, :money, :total, :start_date, :end_date, :user_id)
     end
 end
