@@ -55,10 +55,20 @@
                                <div class="form-group">
                             <label class="col-md-4 control-label">End Date</label>
                             <div class="col-md-8 inputGroupContainer">
-                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-eye-close"></i></span><%= form.text_field :end_date, class: "form-control" %></div></div></div>
-                                <div class="field">
-                                <%= form.label :user_id %><br />
-                                <%= form.collection_select :user_id, User.order(:name), :id, :name, include_blank: true,class: "form-control"%>
+                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-eye-close"></i></span><%= form.text_field :end_date, class: "form-control" %></div>
+                             </div>
+                             </div>
+                               <div class="field">
+                                <select id="role">
+                                  <option value="">Select Role</option>
+                                  <option value="ra">RA</option>
+                                  <option value="ras">RAS</option>
+                                  <option value="finance">Finance</option>
+                                </select>
+                              </div>
+                                <div class="sub">
+                                <%#= form.label :user_id %><br />
+                                <%#= form.collection_select :user_id, User.order(:name), :id, :name, include_blank: true,class: "form-control"%>
                               </div>
 
                                 <div class="actions" class="btn btn-danger">
@@ -72,3 +82,15 @@
              </table>
            </div>
   <% end %>
+  <script type="text/javascript">
+    $('#role').on('change',function()
+    {
+     var cat = this.value
+     $.ajax({
+      url: '/invoices/user',
+      type: 'GET',
+      datatype: "script",
+      data: {role: cat}
+     }) 
+    });
+  </script>
