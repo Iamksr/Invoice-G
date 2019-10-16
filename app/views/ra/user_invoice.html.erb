@@ -1,0 +1,58 @@
+<br><br><br><br>
+ <table class=" myTable table table-hover">
+  <thead>
+    <tr style="border-style: ridge;">
+    	<th>TITLE</th>
+        <th>DESCRIPTION</th> 
+        <th>DEADLINE</th>
+        <th>MONEY</th>
+        <th>TOTAL</th>
+        <th>INVOICE DATE</th>
+        <th></th>
+    </tr>
+</thead>
+</tr>
+<body>
+<tr>
+<td><%= @user.try(:invoice).try(:title)%></td>
+<td><%= @user.try(:invoice).try(:description)%></td>
+<td><%= @user.try(:invoice).try(:deadline)%></td>
+<td><%= @user.try(:invoice).try(:money)%></td>
+<td><%= @user.try(:invoice).try(:total)%></td>
+<td><%= @user.try(:invoice).try(:start_date)%><br></td>
+<td>
+<% if current_user.role == "admin" || current_user.id == @user.id %>
+<a href="url">Reject</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<input class="abc " type="button" name="name" value="Accept" >
+         <%= form_for :ra_comments, url: ra_comments_path, html: {class: "hidden-form"} do |f| %>
+            <% if current_user.ra_comment.present? %>
+            <h5>You Accept the invoice with commnet</h5>
+              <%else%>
+              <%= f.collection_select :user_id, User.where(role: "ras").order(:name), :id, :name, include_blank: true,class: "form-control"%><br>
+            <%= f.text_area :comment, placeholder: "Enter Comment" %><br>
+            <%= f.hidden_field :invoice_id,'@user.try(:invoice).try(:id)' %>
+            <%= f.submit "Send Comment",class: "btn btn-success", name: "nm"%>
+            <%end%>
+         <%end%> 
+</td>
+<% end %>
+</tr>
+</body>
+
+<style type="text/css">
+.abc{
+ float:left;
+  list-style:none;
+}
+.hidden-form{
+  visibility:hidden;
+  }
+.show-form{
+visibility: visible !important;
+}
+</style>
+<script type="text/javascript">
+   $('.abc').click(function(){
+$(this).next().toggleClass('show-form');
+});
+</script> 

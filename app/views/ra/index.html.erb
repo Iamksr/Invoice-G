@@ -4,7 +4,7 @@
 
  <table class=" myTable table table-hover">
   <thead>
-    <tr style="">
+    <tr style="border-style: ridge;">
       <th>Name</th>
       <th>email</th>
       <th>Contact</th>
@@ -24,8 +24,10 @@
         <td><%= user.city %></td>
         <td><%= user.gender %></td>
         <td><%= user.address %></td>
-        
+        <!-- <td><%#= user.try(:invoice).try(:title) %></td> -->
+
+          <td><%= link_to 'Show Invoice',  user_invoice_ra_index_path(user_id: user.id), class: "btn btn-3" %></td>
       </tr>
-    <% end %>
+    <%end %>
   </tbody>
 </table>

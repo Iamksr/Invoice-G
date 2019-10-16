@@ -17,10 +17,26 @@
           <%= render "devise/shared/error_messages", resource: resource %>
 
           <div class="input-box">
-                     <!--  <span class="input-group-addon i_icon"><i class="glyphicon glyphicon-user"></i></span> -->
-                          <%= f.text_field :name, autofocus: true,placeholder: "Enter Your Name" %>
+                     <span class="input-group-addon i_icon"><i class="glyphicon glyphicon-user"></i></span>
+                          <%= f.text_field :name, autofocus: true,autocomplete: "name",class: "form-control input_layout",placeholder: "Enter Your Name" %>
                     </div>
                      
+                     <div class="input-box">
+                     <span class="input-group-addon i_icon"><i class="glyphicon glyphicon-user"></i></span>
+                          <%= f.text_field :address, autofocus: true,autocomplete: "address",class: "form-control input_layout",placeholder: "Your Address" %>
+                    </div>
+                    <div class="input-box">
+                     <span class="input-group-addon i_icon"><i class="glyphicon glyphicon-user"></i></span>
+                          <%= f.text_field :city, autofocus: true,autocomplete: "city",class: "form-control input_layout",placeholder: "Your City/Town" %>
+                    </div>
+                    <div class="input-box">
+                     <span class="input-group-addon i_icon"><i class="glyphicon glyphicon-user"></i></span>
+                          <%= f.text_field :phone, autofocus: true,autocomplete: "phone",class: "form-control input_layout",placeholder: "Your contact" %>
+                    </div>
+                      <div class="input-box">
+                     <span class="input-group-addon i_icon"><i class="glyphicon glyphicon-user"></i></span>
+                          <%= f.text_field :gender, autofocus: true,autocomplete: "gender",class: "form-control input_layout", placeholder: "Male or Female" %>
+                    </div>
 
                   <div class="input-box">
                       <span class="input-group-addon i_icon"><i class="glyphicon glyphicon-user"></i></span>
