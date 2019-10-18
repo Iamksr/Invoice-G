@@ -1,1 +1,36 @@
-show.html.erb
+<br><br><br><br><br><br>
+<p id="notice"><%= notice %></p>
+<div class="container"><p>
+  <strong>Title:</strong>
+  <%= @invoice.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @invoice.description %>
+</p>
+
+<p>
+  <strong>Deadline:</strong>
+  <%= @invoice.deadline %>
+</p>
+
+<p>
+  <strong>Money:</strong>
+  <%= @invoice.money %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @invoice.total %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @invoice.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @invoice.end_date %>
+</p>

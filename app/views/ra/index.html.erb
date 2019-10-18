@@ -1,10 +1,12 @@
 <br><br><br><br>
 
-<h1>List of Referal Agents</h1>
+
 
  <table class=" myTable table table-hover">
+
   <thead>
-    <tr style="border-style: ridge;">
+    <th colspan="12" style="background-color:#5E1D55;color:white;"><h3>List of Referal Agents</h3></th>
+  <tr style="background-color:#32A9EE;color:white;">
       <th>Name</th>
       <th>email</th>
       <th>Contact</th>
@@ -26,8 +28,15 @@
         <td><%= user.address %></td>
         <!-- <td><%#= user.try(:invoice).try(:title) %></td> -->
 
-          <td><%= link_to 'Show Invoice',  user_invoice_ra_index_path(user_id: user.id), class: "btn btn-3" %></td>
+          <td><%= link_to 'Show Invoice',  user_invoice_ra_index_path(user_id: user.id), class: "btn btn-danger btn-lg btn-block btn-huge" %></td>
       </tr>
     <%end %>
   </tbody>
+   </div>
+
 </table>
+<style type="text/css">
+  .pricingTable:hover{
+    margin-top: 10px;
+}
+</style>

@@ -1,88 +1,49 @@
-<br><br><br><br><br><br>
-<p id="notice"><%= notice %></p>
-<div class="container">
-
-  <p>
-  <strong>Title:</strong>
-  <%= @invoice.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @invoice.description %>
-</p>
-
-<p>
-  <strong>Deadline:</strong>
-  <%= @invoice.deadline %>
-</p>
-
-<p>
-  <strong>Money:</strong>
-  <%= @invoice.money %>
-</p>
-
-<p>
-  <strong>Total:</strong>
-  <%= @invoice.total %>
-</p>
-
-<p>
-  <strong>Start date:</strong>
-  <%= @invoice.start_date %>
-</p>
-
-<p>
-  <strong>End date:</strong>
-  <%= @invoice.end_date %>
-</p>
-
-<%= link_to 'Edit', edit_invoice_path(@invoice), class: "btn btn--blue btn--stroke btn--stroke--2 px24 py12 txt-s round-full px36"%> |
-<%= link_to 'Back', invoices_path,class: "btn btn--red btn--stroke btn--stroke--2 px24 py12 txt-s round-full px36" %>
-</div>
-<%#= link_to 'Order', charges_new_path%>
-<a class="btn btn--blue btn--stroke btn--stroke--2 px24 py12 txt-s round-full px36" href="/charges/new" data-reactid="593">Place Order</a>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
+<br><br><br><br>
 
-<div class="row border border-default">
+    <table class="table stats caps">
+      <thead>
+ <tr style="background:#e73a3f;color:#e6f0f9; border-radius:6px;">
+  <th>Title:</th>
+  <th>Description:</th>
+  <th>Deadline:</th>
+  <th>Money:</th>
+  <th>Total:</th>
+  <th>Start date:</th>
+  <th>End date:</th>
   
-    <div class="bg-primary text-center p-2 col-md-12">
-      <p class="lead text-white">TITLE GOES HERE</p>
-    </div>
-  
-  
-    <div class="text-center p-2 col-md-12 text-white bg-primary border-top">
-      <p>[includes-short]</p>
-    </div>
-  
-  
-    <div class="bg-secondary text-white p-2 mb-3 col-3 text-center d-none d-sm-block">
-      <p>TITLE</p>
-       <%= @invoice.title %>
-    </div>
-    <div class="bg-secondary text-white p-2 mb-3 col-3 text-center d-none d-sm-block">
-      <p>DESCRIPTION</p>
-      <%= @invoice.description %>
-    </div>
-    <div class="bg-secondary text-white p-2 mb-3 col-3 text-center d-none d-sm-block">
-      <p>DEADLINE</p>
-      <%= @invoice.deadline %>
-    </div>
-    <div class="bg-secondary text-white p-2 mb-3 col-3 text-center d-none d-sm-block">
-      <p class="mark text-danger lead font-weight-bold">CURRENCY</p>
-    </div></p>
-      <%= @invoice.money %>
-    </div>
-    <div class="bg-secondary text-white p-2 mb-3 col-3 text-center d-none d-sm-block">
-      <p>TOTAL</p>
-      <%= @invoice.total%>
-    </div>
-    <div class="bg-secondary text-white p-2 mb-3 col-3 text-center d-none d-sm-block">
-      <p>INVOIVE DATE</p>
-      <%= @invoice.start_date%>
-    </div>
-
+</tr>
+</thead>
+<tbody>
+  <tr>
+    <td><%= @invoice.title %></td>
+    <td><%= @invoice.description %></td>
+    <td><%= @invoice.deadline %></td>
+    <td> <%= @invoice.money %></td>
+    <td><%= @invoice.total %></td>
+    <td><%= @invoice.start_date %></td>
+    <td><%= @invoice.end_date %></td>
+  </tr>
+</tbody>
 </div>
+</table>
+<%= link_to 'Edit', edit_invoice_path(@invoice), class: ""%> |
+<%= link_to 'Back', invoices_path,class: "" %>
+
+<%#= link_to 'Order', charges_new_path%>
+<a class="btn btn-danger btn-lg btn-block btn-huge" href="/charges/new">Place Order</a>
+
+<style type="text/css">
+  btn-huge{
+    padding-top:20px;
+    padding-bottom:20px;
+}
+
+.btn-block {
+    display: block;
+    width: 15%;
+}
+</style>

@@ -1,0 +1,108 @@
+<br><br><br><br>
+
+
+
+ <table class=" myTable table table-hover">
+  <thead>
+<th colspan="8" style="background-color:#5E1D55;color:white;"><h3>Referal Agent`s Invoice</h3></th>
+   <tr style="background-color:#32A9EE;color:white;">
+    	<th>TITLE</th>
+        <th>DESCRIPTION</th> 
+        <th>DEADLINE</th>
+        <th>MONEY</th>
+        <th>TOTAL</th>
+        <th>INVOICE DATE</th>
+        <th>Comment</th>
+        <th></th>
+        <th></th>
+    </tr>
+</thead>
+</tr>
+<body>
+<tr>
+  <% invoice_id = RasComment.where(user_id: params[:user_id]).first.invoice_id
+      @invoice = Invoice.find(invoice_id)
+     @comment = RasComment.where(invoice_id:  @invoice.id).first.comment
+   %>
+<td><%= @invoice.try(:title)%></td>
+<td><%= @invoice.try(:description)%></td>
+<td><%= @invoice.try(:deadline)%></td>
+<td><%= @invoice.try(:money)%></td>
+<td><%= @invoice.try(:total)%></td>
+<td><%= @invoice.try(:start_date)%><br></td>
+<td><%= @comment %><br></td>
+</tr>
+
+</td>
+<td>
+<% if current_user.role == "admin" || current_user.id == @user.id %>
+<% if (RasComment.where(invoice_id: @invoice).first.try(:accept)) == false  %>
+<input class="xyz" type="button" name="name" value="Asigned to RAS" disabled="false">
+<%else%>
+<input class="abc " type="button" name="name" value="Asigned to RAS" >
+<%end%>
+            <% if RasComment.where(invoice_id: @invoice).first.try(:invoice_id) == @invoice && (RasComment.where(invoice_id: @invoice).first.try(:accept)) == true  %>
+               <h5>You Accept the invoice with comment</h5>
+            <%else%>
+            <%= form_for :ra_comments, url: ra_comments_path, html: {class: "hidden-form"} do |f| %>
+                  <%= f.collection_select :user_id, User.where(role: "ras").order(:name), :id, :name, include_blank: true,class: "form-control"%><br>
+                  <%= f.text_area :comment, placeholder: "Enter Comment" %><br>
+                  <%= f.hidden_field :invoice_id, value: @user.try(:invoice).try(:id) %>
+                  <%= f.hidden_field :accept,value: true %>
+                  <%= f.submit "Send Comment",class: "btn btn-success", name: "nm"%>
+          <%end%>
+         <%end%> 
+<% end %>
+</td>
+<td>
+</body>
+<% if current_user.role == "admin" || current_user.id == @user.id %>
+<% if (RasComment.where(invoice_id: @invoice).first.try(:accept)) == true  %>
+  <input class="xyz" type="button" name="name" value="Reject" disabled="true">
+  <%else%>
+    <input class="xyz"  type="button" name="name" value="Reject">
+  <%end%>
+
+     <% if RasComment.where(invoice_id: @invoice).first.try(:invoice_id) == @invoice && (RasComment.where(invoice_id: @invoice).first.try(:accept)) == false  %>
+               <h5>Invoice has been Rejected!</h5>
+            <%else%>
+            <%= form_for :ra_comments, url: ra_comments_path, html: {class: "hidden-form"} do |f| %>
+                  <%= f.collection_select :user_id, User.where(role: "ras").order(:name), :id, :name, include_blank: true,class: "form-control"%><br>
+                  <%= f.text_area :comment, placeholder: "Enter Comment" %><br>
+                  <%= f.hidden_field :invoice_id, value: @user.try(:invoice).try(:id) %>
+                   <%= f.hidden_field :accept,value: false %>
+                  <%= f.submit "Send Comment",class: "btn btn-success", name: "nm"%>
+          <%end%>
+         <%end%> 
+  <% end %>
+</td>
+
+
+
+<style type="text/css">
+.abc{
+ float:left;
+  list-style:none;
+}
+.xyz{
+	background-color: #ff0000;
+}
+.abc{
+	background-color: #8af103;
+}
+.hidden-form{
+  visibility:hidden;
+  }
+.show-form{
+visibility: visible !important;
+}
+</style>
+<script type="text/javascript">
+   $('.abc').click(function(){
+$(this).next().toggleClass('show-form');
+});
+   $('.xyz').click(function(){
+$(this).next().toggleClass('show-form');
+});
+</script> 
+

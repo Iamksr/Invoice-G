@@ -11,8 +11,13 @@ Rails.application.routes.draw do
       get :user_invoice
     end
   end
-  resources :ras
+  resources :ras do
+   collection do 
+     get :ra_invoice
+   end
+  end
   resources :ra_comments
+  resources :ras_comments
   resources :finance
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
