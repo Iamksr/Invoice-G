@@ -46,8 +46,8 @@
          <%end%> 
 <% end %>
 </td>
-<td>
 </body>
+<td>
 <% if current_user.role == "admin" || current_user.id == @user.id %>
 <% if (RaComment.where(invoice_id: current_user.invoice.id).first.try(:accept)) == true  %>
 	<input class="xyz" type="button" name="name" value="Reject" disabled="true">

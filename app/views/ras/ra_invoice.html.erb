@@ -1,68 +1,83 @@
 <br><br><br><br>
-
-
-
- <table class=" myTable table table-hover">
-  <thead>
-<th colspan="8" style="background-color:#5E1D55;color:white;"><h3>Referal Agent`s Invoice</h3></th>
-   <tr style="background-color:#32A9EE;color:white;">
-    	<th>TITLE</th>
-        <th>DESCRIPTION</th> 
-        <th>DEADLINE</th>
-        <th>MONEY</th>
-        <th>TOTAL</th>
-        <th>INVOICE DATE</th>
-        <th>Comment</th>
-        <th></th>
-        <th></th>
-    </tr>
-
+<table class=" myTable table table-hover">
+<thead>
+  <th colspan="8" style="background-color:#5E1D55;color:white;">
+    <h3>Referal Agent`s Invoice</h3>
+  </th>
+  <tr style="background-color:#32A9EE;color:white;">
+    <th>TITLE</th>
+    <th>DESCRIPTION</th>
+    <th>DEADLINE</th>
+    <th>MONEY</th>
+    <th>TOTAL</th>
+    <th>INVOICE DATE</th>
+    <th>Comment</th>
+    <th></th>
+    <th></th>
+  </tr>
 </thead>
 </tr>
-<body>
 <tr>
   <%invoice_id = RaComment.where(user_id: params[:user_id]).first.try(:invoice_id)
-  if invoice_id
-      @invoice = Invoice.find(invoice_id)
-     @comment = RaComment.where(invoice_id:  @invoice.id).first.comment
-   end
-   %>
-   <% if invoice_id %>
-            <td><%= @invoice.try(:title)%></td>
-            <td><%= @invoice.try(:description)%></td>
-            <td><%= @invoice.try(:deadline)%></td>
-            <td><%= @invoice.try(:money)%></td>
-            <td><%= @invoice.try(:total)%></td>
-            <td><%= @invoice.try(:start_date)%><br></td>
-            <td><%= @comment %><br></td>
-            <% else %>
-          </tr>
-        <caption align="bottom">There is No Invoice asigned to you! Please stay Connected with us ! :-)</caption> 
-            <% end %>
+    if invoice_id
+        @invoice = Invoice.find(invoice_id)
+       @comment = RaComment.where(invoice_id:  @invoice.id).first.comment
+     end
+     %>
+  <% if invoice_id %>
+  <td><%= @invoice.try(:title)%></td>
+  <td><%= @invoice.try(:description)%></td>
+  <td><%= @invoice.try(:deadline)%></td>
+  <td><%= @invoice.try(:money)%></td>
+  <td><%= @invoice.try(:total)%></td>
+  <td><%= @invoice.try(:start_date)%><br></td>
+  <td><%= @comment %><br></td>
+  <% else %>
+  <% end %>
+</tr>
+<td>
+  <% if current_user.role == "admin" || current_user.id == @user.id %>
+  <% if (RasComment.where(invoice_id: @invoice).first.try(:accept)) == true  %>
+  <input class="xyz" type="button" name="name" value="Assign to finance" disabled="true">
+  <%else%>    
+  <input class="xyz"  type="button" name="name" value="Assign to finance">
+  <%end%>
+  <% if RasComment.where(invoice_id: @ivoice).first.try(:invoice_id) == @invoice && (RaComment.where(invoice_id: @invoice).first.try(:accept)) == false  %>
+  <h5>Invoice has been Rejected!</h5>
+  <%else%>
+  <%= form_for :ras_comments, url: ras_comments_path, html: {class: "hidden-form"} do |f| %>
+  <%= f.collection_select :user_id, User.where(role: "finance").order(:name), :id, :name, include_blank: true,class: "form-control"%><br>
+  <%= f.text_area :comment, placeholder: "Enter Comment" %><br>
+  <%= f.hidden_field :invoice_id, value: @user.try(:invoice).try(:id) %>
+  <%= f.hidden_field :accept,value: true %>
+  <%= f.submit "Send Comment",class: "btn btn-success", name: "nm"%>
+  <%end%>
+  <%end%> 
+  <% end %>
+</td>
 <style type="text/css">
-.abc{
- float:left;
+  .abc{
+  float:left;
   list-style:none;
-}
-.xyz{
-	background-color: #ff0000;
-}
-.abc{
-	background-color: #8af103;
-}
-.hidden-form{
+  }
+  .xyz{
+  background-color: #ff0000;
+  }
+  .abc{
+  background-color: #8af103;
+  }
+  .hidden-form{
   visibility:hidden;
   }
-.show-form{
-visibility: visible !important;
-}
+  .show-form{
+  visibility: visible !important;
+  }
 </style>
 <script type="text/javascript">
-   $('.abc').click(function(){
-$(this).next().toggleClass('show-form');
-});
-   $('.xyz').click(function(){
-$(this).next().toggleClass('show-form');
-});
-</script> 
-
+  $('.abc').click(function(){
+  $(this).next().toggleClass('show-form');
+  });
+  $('.xyz').click(function(){
+  $(this).next().toggleClass('show-form');
+  });
+</script>

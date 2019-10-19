@@ -18,7 +18,12 @@ Rails.application.routes.draw do
   end
   resources :ra_comments
   resources :ras_comments
-  resources :finance
+  resources :finance do
+    collection do
+      get :ras_invoice
+    end
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
    # resources :carts

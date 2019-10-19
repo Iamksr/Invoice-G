@@ -22,7 +22,7 @@
         <td><%= user.city %></td>
         <td><%= user.gender %></td>
         <td><%= user.address %></td>
-        
+        <td><%= link_to 'Show Invoice',  ras_invoice_finance_path(user_id: user.id), class: "btn btn-danger btn-lg btn-block btn-huge" %></td>
       </tr>
     <% end %>
   </tbody>
